@@ -6,27 +6,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rock Paper Scissors</title>
         <link rel="stylesheet" href='./styles.css'>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+            integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     </head>
 
     <body>
 
         <!-- Landing Page -->
         <section class="game">
-            <div class="score">
+            <div class="score fadeOut">
                 <div class="player-score">
-                    <h3>Player</h3>
+                    <h3>Me</h3>
                     <p>0</p>
                 </div>
 
                 <div class="computer-score">
-                    <h3>Computer</h3>
+                    <h3>Computer 🤖</h3>
                     <p>0</p>
                 </div>
             </div>
 
             <div class="intro">
                 <h1>Rock Paper Scissors</h1>
-                <button>Play</button>
+                <div class="form">
+                    <form>
+                        <label for="name">(Optional) Enter Your Name, then tick.</label>
+                        <div class="nameAndSet">
+                            <input type="text" id="name" maxlength="20" name="name" placeholder="Me">
+                            <i class="fas fa-check-square setName"></i>
+                        </div>
+                    </form>
+                </div>
+                <div class="nameReady fadeOut">
+                    <h2>Hey, Me 😎</h2>
+                </div>
+                <button class="playNow" >Play</button>
             </div>
 
             <div class="match fadeOut">

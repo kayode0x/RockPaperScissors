@@ -1,14 +1,16 @@
-const game = ()=>{
-    let pScore = 0;
-    let cScore = 0;
+const game = ()=>{ //main game functions that executes everything
+    let pScore = 0; // sets the initial score of the player to 0
+    let cScore = 0; // sets the initial score of the computer to 0
 
     //start the game
     const startGame = ()=>{
         const playBtn = document.querySelector('.intro button');
+        const scoreScreen = document.querySelector('.score')
         const introScreen = document.querySelector('.intro');
         const matchScreen = document.querySelector('.match');
 
-        playBtn.addEventListener('click', ()=>{
+        playBtn.addEventListener('click', ()=>{ 
+            scoreScreen.classList.add('fadeIn');
             introScreen.classList.add('fadeOut');
             matchScreen.classList.add('fadeIn');
         });
@@ -17,38 +19,97 @@ const game = ()=>{
 
     //play the match
     const playMatch = ()=>{
-        const options = document.querySelectorAll('.options button');
+        const playerName = document.querySelector('.player-score h3');
+        const setName = document.querySelector('.setName');
+        const optionsAll = document.querySelectorAll('.options button');
+        const option = document.querySelector('.options');
         const playerHand = document.querySelector('.player-hand');
         const computerHand = document.querySelector('.computer-hand');
         const hands = document.querySelectorAll('.hands img');
+        const selectRock = document.querySelector('.rock');
+        const selectPaper = document.querySelector('.paper');
+        const selectScissors = document.querySelector('.scissors');
+        const winner = document.querySelector('.winner');
+
+        const hideWinner = () => {
+            winner.style.pointerEvents = 'none';
+            winner.style.animation = 'hideAnimateWinner 1s ease-out forwards';
+            playerHand.src = './assets/rock.png';
+            computerHand.src = './assets/rock.png';
+            option.style.animation = 'hideOption 1s ease-out forwards';
+            
+        } //fadeout the "winner or choose an option" and reset the hands img
+
+        selectRock.addEventListener('click', () => {
+            hideWinner();
+        });
+
+        selectPaper.addEventListener('click', () => {
+            hideWinner();
+        });
+
+        selectScissors.addEventListener('click', () => {
+            hideWinner();
+        });
 
         hands.forEach(hand => {
             hand.addEventListener('animationend', function(){
                 this.style.animation = '';
-            });
+            }); //removes the animation
+
+        }); //once the animation ends, remove it
+
+        setName.addEventListener('click', ()=>{
+            const playBtn = document.querySelector('.intro button');
+            const getPlayerName = document.getElementById('name').value;
+            const readyName = document.querySelector('.nameReady h2');
+            const formReady = document.querySelector('.form');
+            const nameReady = document.querySelector('.nameReady');
+            const isEmpty = str => !str.trim().length;
+
+            if (isEmpty(getPlayerName)) {
+                playerName.textContent = "Me"; // if user clicks play without setting a name, set the name to "Me"
+            } else {
+                playerName.textContent = `${getPlayerName}`;
+            }; //set the player name to whatever the player chose
+
+            formReady.classList.add('fadeOut'); // fades the form out
+            nameReady.classList.add('fadeIn'); //shows the name of the player after "check icon" has been clicked
+
+            if (isEmpty(getPlayerName)) {
+                readyName.textContent = "Hey there 😎"; //if the user tries to play with empty spaces, set the name to "Me" but greet with "Hey there"
+            } else {
+                readyName.textContent = `Hey, ${getPlayerName} 😎`; //greet the player with the name chosen by the user
+            };
+            
+            //add an animation to make the play button move
+            
+            playBtn.classList.remove('playNow'); //remove the regular play button (static color)
+            playBtn.classList.add('playBtnAnim'); //add a new button to play with animation (glowing)
 
         });
 
         //computer options
-        const computerOptions = ['rock', 'paper', 'scissors'];
+        const computerOptions = ['rock', 'paper', 'scissors']; // computer options
         
-        options.forEach(option =>{
+        optionsAll.forEach(option =>{
             option.addEventListener('click', function(){
                 computerNumber = Math.floor(Math.random() * 3);
-                computerChoice = computerOptions[computerNumber];
+                computerChoice = computerOptions[computerNumber]; //makes the computer pick a random choice
                 
                 setTimeout(() =>{
                     //call compare hands here
                     compareHands(this.textContent, computerChoice);
 
                     //update images
-                    playerHand.src = `./assets/${this.textContent}.png`;
-                    computerHand.src = `./assets/${computerChoice}.png`;
-                } ,2000);
+                    playerHand.src = `./assets/${this.textContent}.png`; //sets the image to what the player chose
+                    computerHand.src = `./assets/${computerChoice}.png`; //sets the image to what the computer picked
+                } ,2000); //wait for two seconds before displaying the images
 
                 //animations
-                playerHand.style.animation = 'shakePlayer 2s ease';
-                computerHand.style.animation = 'shakeComputer 2s ease';
+                playerHand.style.animation = 'shakePlayer 2s ease'; //animates the player hand
+                computerHand.style.animation = 'shakeComputer 2s ease'; //animates the computer hand
+
             });
         });
         
@@ -62,11 +123,21 @@ const game = ()=>{
         computerScore.textContent = cScore;
     };
 
-    const compareHands = (playerChoice, computerChoice)=>{
-        const winner = document.querySelector('.winner')
+    const compareHands = (playerChoice, computerChoice) => {
+        const winner = document.querySelector('.winner');
+
+        const showWinner = () => {
+            const option = document.querySelector('.options');
+
+            winner.style.pointerEvents = 'all';
+            winner.style.animation = 'showAnimateWinner 1s ease-in';
+            option.style.animation = 'showOption 1s ease-in forwards';
+        } //show the "winner or choose option" header
+
         //check for a tie
         if (playerChoice === computerChoice){
             winner.textContent = "It's a tie";
+            showWinner(); //remember the "winner or choose option" header was hidden? now we show it
              return;
         }
 
@@ -74,11 +145,13 @@ const game = ()=>{
         if (playerChoice === 'rock'){
             if(computerChoice === 'scissors'){
                 winner.textContent = "Player Wins"
-                pScore++;
-                updateScore();
+                showWinner();
+                pScore++; // increase the score
+                updateScore(); //this function displays the new score
                 return;
             } else {
                 winner.textContent = "Computer Wins"
+                showWinner();
                 cScore++;
                 updateScore();
                 return;
@@ -89,11 +162,13 @@ const game = ()=>{
         if (playerChoice === 'paper') {
             if (computerChoice === 'scissors') {
                 winner.textContent = "Computer Wins"
+                showWinner();
                 cScore++;
                 updateScore();
                 return;
             } else {
                 winner.textContent = "Player Wins"
+                showWinner();
                 pScore++;
                 updateScore();
                 return;
@@ -104,11 +179,13 @@ const game = ()=>{
         if (playerChoice === 'scissors') {
             if (computerChoice === 'rock') {
                 winner.textContent = "Computer Wins"
+                showWinner();
                 cScore++;
                 updateScore();
                 return;
             } else {
                 winner.textContent = "Player Wins"
+                showWinner();
                 pScore++;
                 updateScore();
                 return;

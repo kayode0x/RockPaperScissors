@@ -20,6 +20,7 @@ section {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    transition: opacity 0.5s ease;
 }
 
 .score h3 {
@@ -41,13 +42,99 @@ section {
     transition: opacity 0.5s ease;
 } 
 
+.intro form {
+    opacity: 0;
+    animation: intro-form 2s ease-in forwards 2s;
+}
+
+@keyframes intro-form {
+
+    to {
+        opacity: 1;
+    }
+}
+
+.intro label {
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+    color: rgb(173, 173, 173);
+}
+
+.intro input {
+    width: 15rem;
+    height: 2.5rem;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 .intro h1 {
     font-size: 3.5rem;
     color: #fff;
+    opacity: 0;
+    animation: intro-rps 3.5s ease-in-out forwards;
 }
 
-.intro button, .match button {
-    margin-top: 70px;
+@keyframes intro-rps {
+    0% {
+        opacity: 0;
+        transform: translateY(1000px);
+    }
+
+    10% {
+        opacity: 0;
+        transform: translateY(500px)
+    }
+
+    30% {
+        opacity: 0.5;
+        transform: translateY(100px)
+    }
+
+    35% {
+        opacity: 0.65;
+        transform: translateY(100px)
+    }
+
+    40% {
+        opacity: 0.75;
+        transform: translateY(100px)
+    }
+
+    90% {
+        opacity: 0.9;
+        transform: translateY(2px);
+    }
+
+    95% {
+        opacity: 0.9;
+        transform: translateY(1px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.playNow {
+    opacity: 0;
+    animation: intro-form 2s ease-in forwards 2s;
+    
+}
+
+.playBtnAnim {
+    animation: animateBtn 3s ease infinite;
+}
+
+.playNow, .match button, .playBtnAnim {
+    margin-top: 20px;
     width: 7rem;
     height: 2.5rem;
     background: rgb(45, 117, 96);
@@ -56,6 +143,26 @@ section {
     border-radius: 5px;
     color: #fff;
     font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.nameAndSet {
+    display: block;
+    margin-top: 10px;
+}
+
+.nameReady {
+    font-size: 1.5rem;
+    font-family:  'Source Sans Pro', sans-serif;
+    color: #fff;
+    margin-top: -50px;
+    transition: opacity 0.5s ease-in 0.5s;
+}
+
+.fas {
+    margin-left: 5px;
+    font-size: 1.5rem;
+    color: rgb(45, 117, 96);
     cursor: pointer;
 }
 
@@ -79,6 +186,11 @@ section {
     align-items: center;
 }
 
+.hidden {
+    background: transparent;
+    cursor: default;
+}
+
 .player-hand {
     transform: rotateY(180deg);
 }
@@ -86,6 +198,7 @@ section {
 div.fadeOut {
     opacity: 0;
     pointer-events: none;
+
 }
 
 div.fadeIn {
@@ -150,5 +263,93 @@ div.fadeIn {
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+@keyframes animateBtn {
+    0% {
+        background: #75cfb8;
+    }
+
+    25% {
+        background: rgb(45, 117, 96);
+    }
+
+    50% {
+        background: #75cfb8;
+    }
+
+    75% {
+        background: rgb(45, 117, 96);
+    }
+
+    100% {
+        background: #75cfb8;
+    }
+
+}
+
+@keyframes showAnimateWinner {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    50% {
+        opacity: .5;
+        transform: translateY(-5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+}
+
+@keyframes hideAnimateWinner {
+
+    0% {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+
+    50% {
+        opacity: .5;
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(0px)
+    }
+}
+
+@keyframes hideOption {
+
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes showOption {
+
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

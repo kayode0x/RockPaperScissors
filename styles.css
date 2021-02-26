@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
-
 @media all and (max-width: 480px) {
-    
-
     * {
         margin: 0;
         padding: 0;
@@ -13,10 +10,12 @@
 
     html, body {
         height: 100%;
+        width: 100vw;
     }
 
     section {
         height: 100%;
+        width: 100%;
         background: #000;
         font-family: 'Source Sans Pro', sans-serif;
     }
@@ -456,14 +455,32 @@
         }
     }
 
-    #matchEnds {
+    h4 {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
-        font-size: 2rem;
         color: #fff;
+        font-size: .85rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: kayode 2s ease infinite;
+    }
+
+    @keyframes kayode {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .25;
+        }
+
+        100% {
+            opacity: 1;
+        }
     }
 
 }
@@ -900,6 +917,34 @@
 
         90% {
             opacity: .1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: kayode 2s ease infinite;
+    }
+
+    @keyframes kayode {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .25;
         }
 
         100% {
@@ -1346,6 +1391,34 @@
             opacity: 1;
         }
     }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: kayode 2s ease infinite;
+    }
+
+    @keyframes kayode {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .25;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
 }
 
 /* LAPTOP AND ALL */
@@ -1781,6 +1854,34 @@
 
         90% {
             opacity: .1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1rem;
+        text-align: center;
+        position: absolute;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: kayode 2s ease infinite;
+    }
+
+    @keyframes kayode {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .25;
         }
 
         100% {

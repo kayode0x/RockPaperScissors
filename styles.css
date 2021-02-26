@@ -10,8 +10,8 @@
     }
 
     section {
-        min-height: 100vh;
-        min-width: 100vw;
+        /* min-height: 100vh;
+        min-width: 100vw; */
         background: #000;
         font-family: 'Source Sans Pro', sans-serif;
     }

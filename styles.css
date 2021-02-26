@@ -1,355 +1,1787 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-section {
-    height: 100vh;
-    background-color: rgb(39, 41, 67);
-    font-family: 'Source Sans Pro', sans-serif;
-    overflow: hidden;
-}
+@media all and (max-width: 480px) {
 
-.score {
-    color: #fff;
-    height: 10rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    transition: opacity 0.5s ease;
-}
-
-.score h3 {
-    font-size: 2.25rem;
-}
-
-.score p {
-    font-size: 1.75rem;
-    text-align: center;
-    padding: 10px;
-}
-
-.intro {
-    height: 40rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s ease;
-} 
-
-.intro form {
-    opacity: 0;
-    animation: intro-form 2s ease-in forwards 2s;
-}
-
-@keyframes intro-form {
-
-    to {
-        opacity: 1;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
     }
-}
 
-.intro label {
-    font-size: .85rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 20px;
-    color: rgb(173, 173, 173);
-}
+    section {
+        min-height: 100vh;
+        min-width: 100vw;
+        background: #000;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
 
-.intro input {
-    width: 15rem;
-    height: 2.5rem;
-    border: 1px solid #000;
-    outline: none;
-    border-radius: 2px;
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Source Sans Pro', sans-serif;
-}
+    .score {
+        color: #fff;
+        height: 7rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        transition: opacity 0.5s ease;
+    }
 
-.intro h1 {
-    font-size: 3.5rem;
-    color: #fff;
-    opacity: 0;
-    animation: intro-rps 3.5s ease-in-out forwards;
-}
-
-@keyframes intro-rps {
-    0% {
+    .streak h2 {
+        position: absolute;
+        top: 10%;
+        left: 30%;
+        font-size: 1rem;
         opacity: 0;
-        transform: translateY(1000px);
     }
 
-    10% {
-        opacity: 0;
-        transform: translateY(500px)
-    }
-
-    30% {
-        opacity: 0.5;
-        transform: translateY(100px)
-    }
-
-    35% {
-        opacity: 0.65;
-        transform: translateY(100px)
-    }
-
-    40% {
-        opacity: 0.75;
-        transform: translateY(100px)
-    }
-
-    90% {
-        opacity: 0.9;
-        transform: translateY(2px);
-    }
-
-    95% {
-        opacity: 0.9;
-        transform: translateY(1px);
-    }
-
-    100% {
+    @keyframes fadeStreak {
+        
+        0% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(20px);
+        }
+
+        50% {
+        opacity: .5;
+        transform: translateY(10px);
+        }
+
+        100% {
+        opacity: 0;
+        transform: translateY(0px)
+        }
+
     }
-}
 
-.playNow {
-    opacity: 0;
-    animation: intro-form 2s ease-in forwards 2s;
-    
-}
+    .score h3 {
+        font-size: 1.75rem;
+    }
 
-.playBtnAnim {
-    animation: animateBtn 3s ease infinite;
-}
+    .score p {
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 10px;
+    }
 
-.playNow, .match button, .playBtnAnim {
-    margin-top: 20px;
-    width: 7rem;
-    height: 2.5rem;
-    background: rgb(45, 117, 96);
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 1.25rem;
-    cursor: pointer;
-}
+    .intro {
+        height: 35rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+    } 
 
-.nameAndSet {
-    display: block;
-    margin-top: 10px;
-}
+    .intro form {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+    }
 
-.nameReady {
-    font-size: 1.5rem;
-    font-family:  'Source Sans Pro', sans-serif;
-    color: #fff;
-    margin-top: -50px;
-    transition: opacity 0.5s ease-in 0.5s;
-}
+    @keyframes intro-form {
 
-.fas {
-    margin-left: 5px;
-    font-size: 1.5rem;
-    color: rgb(45, 117, 96);
-    cursor: pointer;
-}
+        to {
+        opacity: 1;
+        }
+    }
 
-.match {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.5s ease-in 0.5s;
-}
+    .intro label {
+        font-size: .75rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 20px;
+        color: rgb(173, 173, 173);
+    }
 
-.winner {
-    color: #fff;
-    text-align: center;
-    font-size: 4rem;
-}
+    .intro input {
+        width: 15rem;
+        height: 2.5rem;
+        border: 1px solid #000;
+        outline: none;
+        border-radius: 2px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
 
-.hands, .options {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+    .intro h1 {
+        font-size: 2.5rem;
+        color: #fff;
+        opacity: 0;
+        animation: intro-rps 3.5s ease-in-out forwards;
+    }
 
-.hidden {
-    background: transparent;
-    cursor: default;
-}
+    @keyframes intro-rps {
+        0% {
+            opacity: 0;
+            transform: translateY(1000px);
+        }
 
-.player-hand {
-    transform: rotateY(180deg);
-}
+        10% {
+            opacity: 0;
+            transform: translateY(500px)
+        }
 
-div.fadeOut {
-    opacity: 0;
-    pointer-events: none;
+        30% {
+            opacity: 0.5;
+            transform: translateY(100px)
+        }
 
-}
+        35% {
+            opacity: 0.65;
+            transform: translateY(100px)
+        }
 
-div.fadeIn {
-    opacity: 1;
-    pointer-events: all;
-}
+        40% {
+            opacity: 0.75;
+            transform: translateY(100px)
+        }
 
-@keyframes shakePlayer {
-    0% {
+        90% {
+            opacity: 0.9;
+            transform: translateY(2px);
+        }
+
+        95% {
+            opacity: 0.9;
+            transform: translateY(1px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .playNow {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+    }
+
+    .playBtnAnim {
+        animation: animateBtn 3s ease infinite;
+    }
+
+    .playNow, .match button, .playBtnAnim {
+        margin-top: 30px;
+        width: 7rem;
+        height: 2.5rem;
+        background: #3490de;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+
+    .nameAndSet {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .nameReady {
+        font-size: 1rem;
+        font-family:  'Source Sans Pro', sans-serif;
+        color: #fff;
+        margin-top: -50px;
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .fas {
+        margin-left: 5px;
+        font-size: 1.5rem;
+        color: #e4e6eb;
+        cursor: pointer;
+    }
+
+    .match {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .winner {
+        color: #fff;
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    .hands {
+        height: 15rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .hands img {
+        height: 150px;
+        width: 180px;
+    }
+
+    .options {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        padding: 5px;
+    }
+
+    .hidden {
+        background: transparent;
+        cursor: default;
+    }
+
+    .player-hand {
+        transform: rotateY(180deg);
+    }
+
+        div.fadeOut {
+        opacity: 0;
+        pointer-events: none;
+
+        }
+
+        div.fadeIn {
+        opacity: 1;
+        pointer-events: all;
+        }
+
+        @keyframes shakePlayer {
+        0% {
         transform: rotateY(180deg) translateY(0);
-    }
-    15% {
+        }
+        15% {
         transform: rotateY(180deg) translateY(-50px);
-    }
-    25% {
+        }
+        25% {
         transform: rotateY(180deg) translateY(0);
-    }
-    35% {
+        }
+        35% {
         transform: rotateY(180deg) translateY(-50px);
-    }
-    50% {
+        }
+        50% {
         transform: rotateY(180deg) translateY(0);
-    }
-    65% {
+        }
+        65% {
         transform: rotateY(180deg) translateY(-50px);
-    }
-    75% {
+        }
+        75% {
         transform: rotateY(180deg) translateY(0);
-    }
-    85% {
+        }
+        85% {
         transform: rotateY(180deg) translateY(-50px);
-    }
-    100% {
+        }
+        100% {
         transform: rotateY(180deg) translateY(0);
-    }
-}
+        }
+        }
 
-@keyframes shakeComputer {
-    0% {
+    @keyframes shakeComputer {
+        0% {
         transform: translateY(0);
-    }
-    15% {
+        }
+        15% {
         transform: translateY(-50px);
-    }
-    25% {
+        }
+        25% {
         transform: translateY(0);
-    }
-    35% {
+        }
+        35% {
         transform: translateY(-50px);
-    }
-    50% {
+        }
+        50% {
         transform: translateY(0);
-    }
-    65% {
+        }
+        65% {
         transform: translateY(-50px);
-    }
-    75% {
+        }
+        75% {
         transform: translateY(0);
-    }
-    85% {
+        }
+        85% {
         transform: translateY(-50px);
-    }
-    100% {
+        }
+        100% {
         transform: translateY(0);
-    }
-}
-
-@keyframes animateBtn {
-    0% {
-        background: #75cfb8;
+        }
     }
 
-    25% {
-        background: rgb(45, 117, 96);
+    @keyframes animateBtn {
+        0% {
+        background: #00bbf0;
+        }
+
+        25% {
+        background: #3490de;
+        }
+
+        50% {
+        background: #00bbf0;
+        }
+
+        75% {
+        background: #3490de;
+        }
+
+        100% {
+        background: #00bbf0;
+        }
+
     }
 
-    50% {
-        background: #75cfb8;
-    }
-
-    75% {
-        background: rgb(45, 117, 96);
-    }
-
-    100% {
-        background: #75cfb8;
-    }
-
-}
-
-@keyframes showAnimateWinner {
-    0% {
+    @keyframes showAnimateWinner {
+        0% {
         opacity: 0;
         transform: translateY(-10px);
-    }
+        }
 
-    50% {
+        50% {
         opacity: .5;
         transform: translateY(-5px);
-    }
+        }
 
-    100% {
+        100% {
         opacity: 1;
         transform: translateY(0px)
+        }
     }
-}
 
-@keyframes hideAnimateWinner {
+    @keyframes hideAnimateWinner {
 
-    0% {
+        0% {
         opacity: 1;
         transform: translateY(10px);
-    }
+        }
 
-    50% {
+        50% {
         opacity: .5;
         transform: translateY(5px);
-    }
+        }
 
-    100% {
+        100% {
         opacity: 0;
         transform: translateY(0px)
+        }
     }
-}
 
-@keyframes hideOption {
+    @keyframes hideOption {
 
-    0% {
+        0% {
         opacity: 1;
-    }
+        }
 
-    50% {
+        50% {
         opacity: .5;
-    }
+        }
 
-    100% {
+        100% {
         opacity: 0;
+        }
     }
-}
 
-@keyframes showOption {
+    @keyframes showOption {
 
-    0% {
+        0% {
         opacity: 0;
-    }
+        }
 
-    50% {
+        50% {
         opacity: .5;
-    }
+        }
 
-    100% {
+        100% {
         opacity: 1;
+        }
+    }
+
+    @keyframes shakeNames {
+        0% {
+            opacity: 1;
+        }
+
+        10% {
+            opacity: .1;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: .1;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .1;
+        }
+
+        60% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: .1;
+        }
+
+        80% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: .1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    #matchEnds {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-size: 2rem;
+        color: #fff;
+    }
+
+}
+
+/* TABLET (IPAD) AND ALL */
+@media all and (min-width: 481px) and (max-width: 768px){
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        height: 100vh;
+        background: #000;
+        font-family: 'Source Sans Pro', sans-serif;
+        overflow: hidden;
+    }
+
+    .score {
+        color: #fff;
+        height: 10rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        transition: opacity 0.5s ease;
+    }
+
+    .streak h2 {
+        position: absolute;
+        top: 10%;
+        left: 40%;
+        font-size: 1.5rem;
+        opacity: 0;
+        color: #fff;
+    }
+
+    @keyframes fadeStreak {
+        
+        0% {
+        opacity: 1;
+        transform: translateY(10px)
+        }
+
+        50% {
+        opacity: .5;
+        transform: translateY(5px);
+        }
+
+        100% {
+        opacity: 0;
+        transform: translateY(0px)
+        }
+    }
+
+    .score h3 {
+        font-size: 2.25rem;
+    }
+
+    .score p {
+        font-size: 1.75rem;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .intro {
+        height: 40rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+    } 
+
+    .intro form {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+    }
+
+    @keyframes intro-form {
+
+        to {
+        opacity: 1;
+        }
+    }
+
+    .intro label {
+        font-size: .85rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 20px;
+        color: rgb(173, 173, 173);
+    }
+
+    .intro input {
+        width: 15rem;
+        height: 2.5rem;
+        border: 1px solid #000;
+        outline: none;
+        border-radius: 2px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .intro h1 {
+        font-size: 3.5rem;
+        color: #fff;
+        opacity: 0;
+        animation: intro-rps 3.5s ease-in-out forwards;
+    }
+
+    @keyframes intro-rps {
+        0% {
+            opacity: 0;
+            transform: translateY(1000px);
+        }
+
+        10% {
+            opacity: 0;
+            transform: translateY(500px)
+        }
+
+        30% {
+            opacity: 0.5;
+            transform: translateY(100px)
+        }
+
+        35% {
+            opacity: 0.65;
+            transform: translateY(100px)
+        }
+
+        40% {
+            opacity: 0.75;
+            transform: translateY(100px)
+        }
+
+        90% {
+            opacity: 0.9;
+            transform: translateY(2px);
+        }
+
+        95% {
+            opacity: 0.9;
+            transform: translateY(1px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .playNow {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+
+    }
+
+    .playBtnAnim {
+        animation: animateBtn 3s ease infinite;
+    }
+
+    .playNow, .match button, .playBtnAnim {
+        margin-top: 20px;
+        width: 9rem;
+        height: 3rem;
+        background: #3490de;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .nameAndSet {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .nameReady {
+        font-size: 1.5rem;
+        font-family:  'Source Sans Pro', sans-serif;
+        color: #fff;
+        margin-top: -50px;
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .fas {
+        margin-left: 5px;
+        font-size: 1.5rem;
+        color: #e4e6eb;
+        cursor: pointer;
+    }
+
+    .match {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .winner {
+        color: #fff;
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .options {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        display: flex;
+        width: 70%;
+        justify-content: space-around;
+        padding: 5px;
+    }
+
+    .hands, .options {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .hidden {
+        background: transparent;
+        cursor: default;
+    }
+
+    .player-hand {
+        transform: rotateY(180deg);
+    }
+
+    div.fadeOut {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    div.fadeIn {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    @keyframes shakePlayer {
+        0% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        15% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        25% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        35% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        50% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        65% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        75% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        85% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        100% {
+            transform: rotateY(180deg) translateY(0);
+        }
+    }
+
+    @keyframes shakeComputer {
+        0% {
+            transform: translateY(0);
+        }
+        15% {
+            transform: translateY(-50px);
+        }
+        25% {
+            transform: translateY(0);
+        }
+        35% {
+            transform: translateY(-50px);
+        }
+        50% {
+            transform: translateY(0);
+        }
+        65% {
+            transform: translateY(-50px);
+        }
+        75% {
+            transform: translateY(0);
+        }
+        85% {
+            transform: translateY(-50px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes animateBtn {
+        0% {
+            background: #00bbf0;
+        }
+
+        25% {
+            background: #3490de;
+        }
+
+        50% {
+            background: #00bbf0;
+        }
+
+        75% {
+            background: #3490de;
+        }
+
+        100% {
+            background: #00bbf0;
+        }
+    }
+
+    @keyframes showAnimateWinner {
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        50% {
+            opacity: .5;
+            transform: translateY(-5px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes hideAnimateWinner {
+        0% {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        50% {
+            opacity: .5;
+            transform: translateY(5px);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes hideOption {
+
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .5;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showOption {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: .5;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes shakeNames {
+        0% {
+            opacity: 1;
+        }
+
+        10% {
+            opacity: .1;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: .1;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .1;
+        }
+
+        60% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: .1;
+        }
+
+        80% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: .1;
+        }
+
+        100% {
+            opacity: 1;
+        }
     }
 }
+
+/* IPAD PRO AND ALL */
+@media all and (min-width: 769px) and (max-width: 1024px){
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        height: 100vh;
+        background: #000;
+        font-family: 'Source Sans Pro', sans-serif;
+        overflow: hidden;
+    }
+
+    .score {
+        color: #fff;
+        height: 10rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        transition: opacity 0.5s ease;
+    }
+
+    .streak h2 {
+        position: absolute;
+        top: 10%;
+        left: 42%;
+        font-size: 1.5rem;
+        opacity: 0;
+        color: #fff;
+    }
+
+    @keyframes fadeStreak {
+        
+        0% {
+        opacity: 1;
+        transform: translateY(10px)
+        }
+
+        50% {
+        opacity: .5;
+        transform: translateY(5px);
+        }
+
+        100% {
+        opacity: 0;
+        transform: translateY(0px)
+        }
+    }
+
+    .score h3 {
+        font-size: 2.25rem;
+    }
+
+    .score p {
+        font-size: 1.75rem;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .intro {
+        height: 55rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+    } 
+
+    .intro form {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+    }
+
+    @keyframes intro-form {
+
+        to {
+        opacity: 1;
+        }
+    }
+
+    .intro label {
+        font-size: .85rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 20px;
+        color: rgb(173, 173, 173);
+    }
+
+    .intro input {
+        width: 15rem;
+        height: 2.5rem;
+        border: 1px solid #000;
+        outline: none;
+        border-radius: 2px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .intro h1 {
+        font-size: 3.5rem;
+        color: #fff;
+        opacity: 0;
+        animation: intro-rps 3.5s ease-in-out forwards;
+    }
+
+    @keyframes intro-rps {
+        0% {
+            opacity: 0;
+            transform: translateY(1000px);
+        }
+
+        10% {
+            opacity: 0;
+            transform: translateY(500px)
+        }
+
+        30% {
+            opacity: 0.5;
+            transform: translateY(100px)
+        }
+
+        35% {
+            opacity: 0.65;
+            transform: translateY(100px)
+        }
+
+        40% {
+            opacity: 0.75;
+            transform: translateY(100px)
+        }
+
+        90% {
+            opacity: 0.9;
+            transform: translateY(2px);
+        }
+
+        95% {
+            opacity: 0.9;
+            transform: translateY(1px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .playNow {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+
+    }
+
+    .playBtnAnim {
+        animation: animateBtn 3s ease infinite;
+    }
+
+    .playNow, .match button, .playBtnAnim {
+        margin-top: 20px;
+        width: 8rem;
+        height: 3rem;
+        background: #3490de;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .nameAndSet {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .nameReady {
+        font-size: 1.5rem;
+        font-family:  'Source Sans Pro', sans-serif;
+        color: #fff;
+        margin-top: -50px;
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .fas {
+        margin-left: 5px;
+        font-size: 1.5rem;
+        color: #e4e6eb;
+        cursor: pointer;
+    }
+
+    .match {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .winner {
+        color: #fff;
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .options {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        display: flex;
+        width: 60%;
+        justify-content: space-around;
+        padding: 5px;
+    }
+
+    .hands, .options {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .hidden {
+        background: transparent;
+        cursor: default;
+    }
+
+    .player-hand {
+        transform: rotateY(180deg);
+    }
+
+    div.fadeOut {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    div.fadeIn {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    @keyframes shakePlayer {
+        0% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        15% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        25% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        35% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        50% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        65% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        75% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        85% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        100% {
+            transform: rotateY(180deg) translateY(0);
+        }
+    }
+
+    @keyframes shakeComputer {
+        0% {
+            transform: translateY(0);
+        }
+        15% {
+            transform: translateY(-50px);
+        }
+        25% {
+            transform: translateY(0);
+        }
+        35% {
+            transform: translateY(-50px);
+        }
+        50% {
+            transform: translateY(0);
+        }
+        65% {
+            transform: translateY(-50px);
+        }
+        75% {
+            transform: translateY(0);
+        }
+        85% {
+            transform: translateY(-50px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes animateBtn {
+        0% {
+            background: #00bbf0;
+        }
+
+        25% {
+            background: #3490de;
+        }
+
+        50% {
+            background: #00bbf0;
+        }
+
+        75% {
+            background: #3490de;
+        }
+
+        100% {
+            background: #00bbf0;
+        }
+    }
+
+    @keyframes showAnimateWinner {
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        50% {
+            opacity: .5;
+            transform: translateY(-5px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes hideAnimateWinner {
+        0% {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        50% {
+            opacity: .5;
+            transform: translateY(5px);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes hideOption {
+
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .5;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showOption {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: .5;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes shakeNames {
+        0% {
+            opacity: 1;
+        }
+
+        10% {
+            opacity: .1;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: .1;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .1;
+        }
+
+        60% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: .1;
+        }
+
+        80% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: .1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+/* LAPTOP AND ALL */
+
+@media all and (min-width: 1025px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    section {
+        height: 100vh;
+        background: #000;
+        font-family: 'Source Sans Pro', sans-serif;
+        overflow: hidden;
+    }
+
+    .score {
+        color: #fff;
+        height: 10rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        transition: opacity 0.5s ease;
+    }
+
+    .streak h2 {
+        position: absolute;
+        top: 10%;
+        left: 45%;
+        font-size: 1.5rem;
+        opacity: 0;
+        color: #fff;
+    }
+
+    @keyframes fadeStreak {
+        
+        0% {
+        opacity: 1;
+        transform: translateY(10px)
+        }
+
+        50% {
+        opacity: .5;
+        transform: translateY(5px);
+        }
+
+        100% {
+        opacity: 0;
+        transform: translateY(0px)
+        }
+    }
+
+    .score h3 {
+        font-size: 2.25rem;
+    }
+
+    .score p {
+        font-size: 1.75rem;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .intro {
+        height: 40rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+    } 
+
+    .intro form {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+    }
+
+    @keyframes intro-form {
+
+        to {
+        opacity: 1;
+        }
+    }
+
+    .intro label {
+        font-size: .85rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 20px;
+        color: rgb(173, 173, 173);
+    }
+
+    .intro input {
+        width: 15rem;
+        height: 2.5rem;
+        border: 1px solid #000;
+        outline: none;
+        border-radius: 2px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .intro h1 {
+        font-size: 3.5rem;
+        color: #fff;
+        opacity: 0;
+        animation: intro-rps 3.5s ease-in-out forwards;
+    }
+
+    @keyframes intro-rps {
+        0% {
+            opacity: 0;
+            transform: translateY(1000px);
+        }
+
+        10% {
+            opacity: 0;
+            transform: translateY(500px)
+        }
+
+        30% {
+            opacity: 0.5;
+            transform: translateY(100px)
+        }
+
+        35% {
+            opacity: 0.65;
+            transform: translateY(100px)
+        }
+
+        40% {
+            opacity: 0.75;
+            transform: translateY(100px)
+        }
+
+        90% {
+            opacity: 0.9;
+            transform: translateY(2px);
+        }
+
+        95% {
+            opacity: 0.9;
+            transform: translateY(1px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .playNow {
+        opacity: 0;
+        animation: intro-form 2s ease-in forwards 2s;
+
+    }
+
+    .playBtnAnim {
+        animation: animateBtn 3s ease infinite;
+    }
+
+    .playNow, .match button, .playBtnAnim {
+        margin-top: 20px;
+        width: 7rem;
+        height: 2.5rem;
+        background: #3490de;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+
+    .nameAndSet {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .nameReady {
+        font-size: 1.5rem;
+        font-family:  'Source Sans Pro', sans-serif;
+        color: #fff;
+        margin-top: -50px;
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .fas {
+        margin-left: 5px;
+        font-size: 1.5rem;
+        color: #e4e6eb;
+        cursor: pointer;
+    }
+
+    .match {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.5s ease-in 0.5s;
+    }
+
+    .winner {
+        color: #fff;
+        text-align: center;
+        font-size: 4rem;
+    }
+
+    .options {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        display: flex;
+        width: 30%;
+        justify-content: space-around;
+        padding: 5px;
+    }
+
+    .hands, .options {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .hidden {
+        background: transparent;
+        cursor: default;
+    }
+
+    .player-hand {
+        transform: rotateY(180deg);
+    }
+
+    div.fadeOut {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    div.fadeIn {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    @keyframes shakePlayer {
+        0% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        15% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        25% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        35% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        50% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        65% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        75% {
+            transform: rotateY(180deg) translateY(0);
+        }
+        85% {
+            transform: rotateY(180deg) translateY(-50px);
+        }
+        100% {
+            transform: rotateY(180deg) translateY(0);
+        }
+    }
+
+    @keyframes shakeComputer {
+        0% {
+            transform: translateY(0);
+        }
+        15% {
+            transform: translateY(-50px);
+        }
+        25% {
+            transform: translateY(0);
+        }
+        35% {
+            transform: translateY(-50px);
+        }
+        50% {
+            transform: translateY(0);
+        }
+        65% {
+            transform: translateY(-50px);
+        }
+        75% {
+            transform: translateY(0);
+        }
+        85% {
+            transform: translateY(-50px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes animateBtn {
+        0% {
+            background: #00bbf0;
+        }
+
+        25% {
+            background: #3490de;
+        }
+
+        50% {
+            background: #00bbf0;
+        }
+
+        75% {
+            background: #3490de;
+        }
+
+        100% {
+            background: #00bbf0;
+        }
+    }
+
+    @keyframes showAnimateWinner {
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        50% {
+            opacity: .5;
+            transform: translateY(-5px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes hideAnimateWinner {
+        0% {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        50% {
+            opacity: .5;
+            transform: translateY(5px);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(0px)
+        }
+    }
+
+    @keyframes hideOption {
+
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .5;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showOption {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: .5;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes shakeNames {
+        0% {
+            opacity: 1;
+        }
+
+        10% {
+            opacity: .1;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: .1;
+        }
+
+        40% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .1;
+        }
+
+        60% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: .1;
+        }
+
+        80% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: .1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+

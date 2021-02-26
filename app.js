@@ -1,6 +1,10 @@
 const game = ()=>{ //main game functions that executes everything
     let pScore = 0; // sets the initial score of the player to 0
     let cScore = 0; // sets the initial score of the computer to 0
+    let streaks = [] //sets the initial values to 0
+
+
+    
 
     //start the game
     const startGame = ()=>{
@@ -19,6 +23,7 @@ const game = ()=>{ //main game functions that executes everything
 
     //play the match
     const playMatch = ()=>{
+
         const playerName = document.querySelector('.player-score h3');
         const setName = document.querySelector('.setName');
         const optionsAll = document.querySelectorAll('.options button');
@@ -59,7 +64,7 @@ const game = ()=>{ //main game functions that executes everything
 
         }); //once the animation ends, remove it
 
-        setName.addEventListener('click', ()=>{
+        setName.addEventListener('click', () => {
             const playBtn = document.querySelector('.intro button');
             const getPlayerName = document.getElementById('name').value;
             const readyName = document.querySelector('.nameReady h2');
@@ -77,13 +82,13 @@ const game = ()=>{ //main game functions that executes everything
             nameReady.classList.add('fadeIn'); //shows the name of the player after "check icon" has been clicked
 
             if (isEmpty(getPlayerName)) {
-                readyName.textContent = "Hey there 😎"; //if the user tries to play with empty spaces, set the name to "Me" but greet with "Hey there"
+                readyName.textContent = "Hey there 👋"; //if the user tries to play with empty spaces, set the name to "Me" but greet with "Hey there"
             } else {
-                readyName.textContent = `Hey, ${getPlayerName} 😎`; //greet the player with the name chosen by the user
+                readyName.textContent = `Hey, "${getPlayerName}" 👋`; //greet the player with the name chosen by the user
             };
-            
+
             //add an animation to make the play button move
-            
+
             playBtn.classList.remove('playNow'); //remove the regular play button (static color)
             playBtn.classList.add('playBtnAnim'); //add a new button to play with animation (glowing)
 
@@ -118,10 +123,61 @@ const game = ()=>{ //main game functions that executes everything
     const updateScore = ()=>{
         const playerScore = document.querySelector('.player-score p');
         const computerScore = document.querySelector('.computer-score p');
+        const playerName = document.querySelector('.player-score');
+        const computerName = document.querySelector('.computer-score');
+        const streak = document.querySelector('.streak h2');
+        
 
-        playerScore.textContent = pScore;
-        computerScore.textContent = cScore;
+        const shakePlayerName = () => {
+            playerName.style.animation = 'shakeNames 2s ease forwards';
+            streak.textContent = "Player Streak 🔥"
+            streak.style.animation = 'fadeStreak 2s ease forwards';
+        }
+
+        const shakeComputerName = () => {
+            computerName.style.animation = 'shakeNames 2s ease forwards';
+            streak.textContent = "Computer Streak 🔥"
+            streak.style.animation = 'fadeStreak 2s ease forwards';
+        }
+
+        playerScore.textContent = Number(pScore);
+        computerScore.textContent = Number(cScore);
+
+        function countStreaks(array, what) {
+            var count = 0;
+            for (var i = 0; i < array.length; i++) {
+                if (array[i] === what) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        let x = Number(countStreaks(streaks, 1));
+        let y = Number(countStreaks(streaks, 0));
+
+        if (x === 1 && y === 1) {
+            streaks = []
+        } else if (x === 2 && y === 1) {
+            streaks = []
+        } else if (x === 1 && y === 2) {
+            streaks = []
+        };
+
+        if (x === 3 && y < 3) {
+
+            shakePlayerName();
+            streaks = [];
+        };
+
+        if (y === 3 && x < 3) {
+
+            shakeComputerName();
+            streaks = [];
+        };
+        
     };
+
 
     const compareHands = (playerChoice, computerChoice) => {
         const winner = document.querySelector('.winner');
@@ -136,21 +192,24 @@ const game = ()=>{ //main game functions that executes everything
 
         //check for a tie
         if (playerChoice === computerChoice){
+            updateScore(); //this function displays the new score
             winner.textContent = "It's a tie";
             showWinner(); //remember the "winner or choose option" header was hidden? now we show it
-             return;
+            return;
         }
 
         //check for rock
         if (playerChoice === 'rock'){
             if(computerChoice === 'scissors'){
                 winner.textContent = "Player Wins"
+                streaks.push(1);
                 showWinner();
                 pScore++; // increase the score
                 updateScore(); //this function displays the new score
                 return;
             } else {
                 winner.textContent = "Computer Wins"
+                streaks.push(0);
                 showWinner();
                 cScore++;
                 updateScore();
@@ -162,12 +221,14 @@ const game = ()=>{ //main game functions that executes everything
         if (playerChoice === 'paper') {
             if (computerChoice === 'scissors') {
                 winner.textContent = "Computer Wins"
+                streaks.push(0);
                 showWinner();
                 cScore++;
                 updateScore();
                 return;
             } else {
                 winner.textContent = "Player Wins"
+                streaks.push(1);
                 showWinner();
                 pScore++;
                 updateScore();
@@ -179,21 +240,25 @@ const game = ()=>{ //main game functions that executes everything
         if (playerChoice === 'scissors') {
             if (computerChoice === 'rock') {
                 winner.textContent = "Computer Wins"
+                streaks.push(0);
                 showWinner();
                 cScore++;
                 updateScore();
                 return;
             } else {
                 winner.textContent = "Player Wins"
+                streaks.push(1);
                 showWinner();
                 pScore++;
                 updateScore();
                 return;
             }
         }
+
     }
 
     //call all the inner functions
+    
     startGame();
     playMatch();
 };

@@ -71,6 +71,7 @@
     }
 
     .intro {
+        margin-top: 10rem;
         height: 15rem;
         display: flex;
         flex-direction: column;

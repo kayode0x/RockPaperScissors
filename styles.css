@@ -11,8 +11,12 @@
         overflow: hidden;
     }
 
+    html, body {
+        height: 100%;
+    }
+
     section {
-        height: var(--app-height);
+        height: 100%;
         background: #000;
         font-family: 'Source Sans Pro', sans-serif;
     }
@@ -67,7 +71,7 @@
     }
 
     .intro {
-        margin-top: -50px;
+        margin-top: -8rem;
         height: 35rem;
         display: flex;
         flex-direction: column;

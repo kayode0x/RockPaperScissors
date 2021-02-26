@@ -1,7 +1,3 @@
-const appHeight = () => document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`)
-window.addEventListener('resize', appHeight)
-appHeight();
-
 const game = ()=>{ //main game functions that executes everything
     let pScore = 0; // sets the initial score of the player to 0
     let cScore = 0; // sets the initial score of the computer to 0

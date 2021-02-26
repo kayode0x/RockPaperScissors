@@ -12,6 +12,8 @@ const game = ()=>{ //main game functions that executes everything
         const scoreScreen = document.querySelector('.score')
         const introScreen = document.querySelector('.intro');
         const matchScreen = document.querySelector('.match');
+        const height = document.querySelector('.game')
+        height.style = window.innerHeight;
 
         const goTop = () => {
             windows.scrollTo(0, 0);

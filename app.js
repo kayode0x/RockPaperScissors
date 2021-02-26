@@ -13,10 +13,15 @@ const game = ()=>{ //main game functions that executes everything
         const introScreen = document.querySelector('.intro');
         const matchScreen = document.querySelector('.match');
 
+        const goTop = () => {
+            windows.scrollTo(0, 0);
+        }
+
         playBtn.addEventListener('click', ()=>{ 
             scoreScreen.classList.add('fadeIn');
             introScreen.classList.add('fadeOut');
             matchScreen.classList.add('fadeIn');
+            goTop();
         });
 
     };
